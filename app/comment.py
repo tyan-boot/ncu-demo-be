@@ -15,6 +15,7 @@ comment = Blueprint("comment", __name__)
 
 @comment.route("/")
 @comment.route("")
+@login_required
 def get_comments():
     args = request.args
     offset = args.get("offset", 0)
