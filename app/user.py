@@ -37,12 +37,13 @@ def register_user():
             "message": "user has already exist"
         })
 
-    token = create_user(username, password)
+    token, uid = create_user(username, password)
 
     return jsonify({
         "err": 0,
         "message": "create succeeded",
-        "token": token
+        "token": token,
+        "uid": uid
     })
 
 

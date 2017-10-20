@@ -36,7 +36,7 @@ def create_user(username, password):
             cur.execute("INSERT INTO users VALUES (crypt(%s, gen_salt('md5')), %s, %s) RETURNING id",
                         (password, datetime.now(), username))
             uid = cur.fetchone()[0]
-        return generate_token(uid, username)
+        return generate_token(uid, username), uid
     except Exception as e:
         db.rollback()
         return None
