@@ -33,7 +33,7 @@ def register_user():
 
     if has_user(username):
         return jsonify({
-            "status": 3,
+            "err": 3,
             "message": "user has already exist"
         })
 
