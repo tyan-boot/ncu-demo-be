@@ -21,7 +21,7 @@ def login_required(func):
         from app.utils import verify_token
         uid = verify_token(token)
         if not uid:
-            make_response(jsonify({
+            return make_response(jsonify({
                 "err": 1,
                 "message": "auth failed"
             }), 401)
