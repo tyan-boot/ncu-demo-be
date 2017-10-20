@@ -66,7 +66,8 @@ def new_comment():
     return jsonify({
         "err": 0,
         "message": "comment succeeded",
-        "cid": cid
+        "cid": cid,
+        "comment": get_comment(cid)
     })
 
 

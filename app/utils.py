@@ -119,6 +119,25 @@ def create_comment(uid, title, content):
         return cur.fetchone()[0]
 
 
+def get_comment(cid):
+    with db.cursor() as cur:
+        cur.execute("SELECT * FROM comments WHERE id = %s", (cid,))
+        if cur.rowcount == 0:
+            return None
+        else:
+            c = cur.fetchone()
+            return {
+                "id": c[0],
+                "title": c[1],
+                "content": c[2],
+                "user": {
+                    "id": c[3],
+                    "name": get_username(c[3])
+                },
+                "create_at": c[4]
+            }
+
+
 def remove_comment(cid, uid):
     """
     删除一条留言
