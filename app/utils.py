@@ -54,7 +54,8 @@ def verify_user(username, password):
         if cur.rowcount == 0:
             return False
         else:
-            return generate_token(cur.fetchone()[0], username)
+            uid = cur.fetchone()[0]
+            return generate_token(uid, username), uid
 
 
 def generate_token(uid, username):

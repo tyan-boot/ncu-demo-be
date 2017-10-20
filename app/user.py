@@ -65,7 +65,7 @@ def login():
             "message": "missing parameters"
         })
 
-    token = verify_user(username, password)
+    token, uid = verify_user(username, password)
 
     if not token:
         return jsonify({
@@ -76,5 +76,6 @@ def login():
         return jsonify({
             "err": 0,
             "message": "login succeeded",
-            "token": token
+            "token": token,
+            "uid": uid
         })
